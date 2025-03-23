@@ -13,37 +13,36 @@ public class ArrangeTheBalls {
             a[i] = sc.next().charAt(0);
         }
         sc.close(); // Close the scanner to prevent resource leak
-        print(arrangeBalls(a));
+        arrangeBalls(n, a);
     }
 
-    private static char[] arrangeBalls(char[] arr) {
-        int saffronCount=0,whiteCount=0,greenCount=0;
-        for(char c:arr){
-            if(c=='S'){
-                saffronCount++;
+    private static void arrangeBalls(int n, char[] balls) {
+        if (n >= 3) {
+            int saffronCount = 0, whiteCount = 0, greenCount = 0;
+            for (char b : balls) {
+                if (b == 'S') {
+                    saffronCount++;
+                } else if (b == 'W') {
+                    whiteCount++;
+                } else if (b == 'G') {
+                    greenCount++;
+                }
             }
-            else if(c=='W'){
-                whiteCount++;
+            int index = 0;
+            for (int i = 0; i < saffronCount; i++) {
+                balls[index++] = 'S';
             }
-            else if(c=='G'){
-                greenCount++;
+            for (int i = 0; i < whiteCount; i++) {
+                balls[index++] = 'W';
             }
-        }
-int index=0;
-        for(int i=0;i<saffronCount;i++){
-            arr[index++]='S';
-        }
-        for(int i=0;i<whiteCount;i++){
-            arr[index++]='W';
-        }
-        for(int i=0;i<greenCount;i++){
-            arr[index++]='G';
-        }
-        return arr;
-    }
-    private static void print(char[] a){
-        for (char aa: a){
-            System.out.print(aa+" ");
+            for (int i = 0; i < greenCount; i++) {
+                balls[index++] = 'G';
+            }
+
+            for (int i = 0; i < balls.length - 1; i++) {
+                System.out.print(balls[i] + " ");
+            }
+            System.out.print(balls[balls.length - 1]);
         }
     }
 }
