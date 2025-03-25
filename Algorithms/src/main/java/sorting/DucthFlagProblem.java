@@ -2,7 +2,7 @@ package sorting;
 
 import java.util.Scanner;
 
-public class BubbleSort {
+public class DucthFlagProblem {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the number of elements in the array: ");
@@ -13,12 +13,10 @@ public class BubbleSort {
             a[i] = sc.nextInt();
         }
         sc.close(); // Close the scanner to prevent resource leak
-        printArray(bubbleSort(a));
-    }
 
-    private static int[] bubbleSort(int[] a) {
-        int n=a.length;
-        for(int i=0;i<n-1;i++){
+        //bubblesort
+
+        for(int i=0;i<n;i++){
             for(int j=0;j<n-i-1;j++){
                 if(a[j]>a[j+1]){
                     int temp=a[j];
@@ -27,13 +25,10 @@ public class BubbleSort {
                 }
             }
         }
-        return a;
+
+        for(int i : a){
+            System.out.print(i+" ");
+        }
     }
 
-    private static void printArray(int[] a) {
-        for (int i : a) {
-            System.out.print(i + " ");
-        }
-        System.out.println();
-    }
 }

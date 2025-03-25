@@ -1,8 +1,5 @@
 package sorting;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 
 public class RestaurantTrip {
@@ -27,13 +24,13 @@ public class RestaurantTrip {
 
     private static void maximumDayVisitToRestaurant(int[] a,int[] b) {
         int n=a.length;
-        for(int i=0;i<n-1;i++){
+        for(int i=0;i<n;i++){
             b[i]=b[i]-a[i];
         }
         sort(b);
         int i=0,j=n-1,ans=0;
         while(i<j){
-            if(b[i]+b[j]>=0){
+            if(b[i]+b[j]>0){
                 ans++;
                 i++;
                 j--;
@@ -43,6 +40,7 @@ public class RestaurantTrip {
             }
         }
         System.out.println(ans);
+
     }
 
     private static void sort(int[] arr) {

@@ -2,7 +2,7 @@ package sorting;
 
 import java.util.Scanner;
 
-public class BubbleSort {
+public class SpecailPairsOfScores {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the number of elements in the array: ");
@@ -13,27 +13,20 @@ public class BubbleSort {
             a[i] = sc.nextInt();
         }
         sc.close(); // Close the scanner to prevent resource leak
-        printArray(bubbleSort(a));
+        System.out.println(specialPairsOfScores(a));
     }
 
-    private static int[] bubbleSort(int[] a) {
-        int n=a.length;
-        for(int i=0;i<n-1;i++){
-            for(int j=0;j<n-i-1;j++){
-                if(a[j]>a[j+1]){
-                    int temp=a[j];
-                    a[j]=a[j+1];
-                    a[j+1]=temp;
+    private static int specialPairsOfScores(int[] arr) {
+        int n = arr.length;
+        int count = 0;
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                if(arr[i]>arr[j]){
+                    System.out.println("("+arr[i]+","+arr[j]+")");
+                    count++;
                 }
             }
         }
-        return a;
-    }
-
-    private static void printArray(int[] a) {
-        for (int i : a) {
-            System.out.print(i + " ");
-        }
-        System.out.println();
+        return count;
     }
 }
