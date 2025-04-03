@@ -1,4 +1,4 @@
-package greaterpyramidC0;
+package greaterpyramid.c0;
 
 import java.util.Arrays;
 import java.util.Scanner;

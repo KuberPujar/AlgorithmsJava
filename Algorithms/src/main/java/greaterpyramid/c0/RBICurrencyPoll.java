@@ -1,4 +1,4 @@
-package greaterpyramidC0;
+package greaterpyramid.c0;
 
 import java.util.ArrayList;
 import java.util.List;
