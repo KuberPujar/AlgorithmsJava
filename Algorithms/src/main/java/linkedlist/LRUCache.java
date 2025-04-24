@@ -2,17 +2,22 @@ package linkedlist;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 /*
 LRU cache
-Design a data structure that works like a LRU Cache. Here cap denotes the capacity of the cache and Q denotes the number of queries. Query can be of two types:
+Design a data structure that works like a LRU Cache. Here cap denotes the capacity
+of the cache and Q denotes the number of queries. Query can be of two types:
 
 SET x y: sets the value of the key x with value y.
 GET x: gets the key of x if present else returns -1.
 
 The LRUCache class has two methods get() and set() which are defined as follows.
 
-get(key): returns the value of the key if it already exists in the cache otherwise returns -1. set(key, value): if the key is already present, update its value. If not present, add the key-value pair to the cache. If the cache reaches its capacity it should invalidate the least recently used item before inserting the new item.
+get(key): returns the value of the key if it already exists in the cache otherwise returns -1.
+set(key, value): if the key is already present, update its value. If not present,
+add the key-value pair to the cache. If the cache reaches its capacity it should
+invalidate the least recently used item before inserting the new item.
 In the constructor of the class the capacity of the cache should be initialized.
 
 Example 1:
@@ -36,16 +41,29 @@ Note: The function should return the result.
  */
 public class LRUCache {
     public static void main(String[] args) {
-        LRUCache cache = new LRUCache(2);
-        cache.set(1, 2);
-        System.out.println(cache.get(1)); // Output: 2
-        cache.set(2, 3);
-        System.out.println(cache.get(2)); // Output: 3
-        cache.set(3, 4); // Evicts key 1
-        System.out.println(cache.get(1)); // Output: -1
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter capacity of cache:");
+        int cap = sc.nextInt();
+        LRUCache cache = new LRUCache(cap);
+        System.out.println("Enter number of queries:");
+        int Q = sc.nextInt();
+        sc.nextLine(); // Consume the leftover newline
+        for (int i = 0; i < Q; i++) {
+            String query = sc.nextLine();
+            String[] parts = query.split(" ");
+            if (parts[0].equals("SET")) {
+                int key = Integer.parseInt(parts[1]);
+                int value = Integer.parseInt(parts[2]);
+                cache.set(key, value);
+            } else if (parts[0].equals("GET")) {
+                int key = Integer.parseInt(parts[1]);
+                System.out.println(cache.get(key));
+            }
+        }
+        sc.close();
     }
 
-    class Node {
+    static class Node {
         int key;
         int value;
         Node prev;
