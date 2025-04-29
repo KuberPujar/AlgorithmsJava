@@ -1,5 +1,6 @@
 package dynamicprmng;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 /*
@@ -13,7 +14,7 @@ Initially let us say you start with exp "X".
 
 Return the minimum possible value of X required to cross the jungle and come out with a
 positive exp.
-
+fruits.
 Input Format:
 Two space-separated integers 'n' and 'm' denoting the number of rows and columns.
 
@@ -42,45 +43,40 @@ public class JungleCrossing {
      * find the minimum initial exp required to reach the bottom-right cell with a positive exp.
      * You can only move right or down.
      *
-     * @param points A 2D array of integers representing the jungle.
+     * //@param grid A 2D array of integers representing the jungle.
      * @return The minimum initial exp required.
      */
-    public static int minInitialExp(int[][] points) {
-        int m = points.length, n = points[0].length;
-        int[][] dp = new int[m][n];
 
-        // Base case
-        if (points[m - 1][n - 1] > 0) {
-            dp[m - 1][n - 1] = 1;
-        }
-        else {
-            dp[m - 1][n - 1]
-                    = Math.abs(points[m - 1][n - 1]) + 1;
-        }
 
-        // Fill last row and last column as base to fill
-        // entire table
-        for (int i = m - 2; i >= 0; i--) {
-            dp[i][n - 1] = Math.max(
-                    dp[i + 1][n - 1] - points[i][n - 1], 1);
-        }
-        for (int j = n - 2; j >= 0; j--) {
-            dp[m - 1][j] = Math.max(
-                    dp[m - 1][j + 1] - points[m - 1][j], 1);
+    public static int minInitialExp(int[][] grid) {
+        int n = grid.length;
+        int m = grid[0].length;
+        int[][] dp = new int[n][m];
+        dp[0][0] = grid[0][0];
+
+        // Fill first row
+        for (int j = 1; j < m; j++) {
+            dp[0][j] = dp[0][j - 1] + grid[0][j];
         }
 
-        // fill the table in bottom-up fashion
-        for (int i = m - 2; i >= 0; i--) {
-            for (int j = n - 2; j >= 0; j--) {
-                int minExitPoints
-                        = Math.min(dp[i + 1][j], dp[i][j + 1]);
-                dp[i][j] = Math.max(
-                        minExitPoints - points[i][j], 1);
+        // Fill first column
+        for (int i = 1; i < n; i++) {
+            dp[i][0] = dp[i - 1][0] + grid[i][0];
+        }
+
+        // Fill rest of the dp matrix
+        for (int i = 1; i < n; i++) {
+            for (int j = 1; j < m; j++) {
+                dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]) + grid[i][j];
             }
         }
 
-        return dp[0][0];
+        int maxPathSum = dp[n - 1][m - 1];
+
+        // X must be such that X + maxPathSum > 0
+        return 1 - maxPathSum;
     }
+
 
     public static void main(String[] args) {
 
@@ -88,20 +84,27 @@ public class JungleCrossing {
                 {0, 1},
                 {2, 0}
         };
-        System.out.println(minInitialExp(jungle1)); // Expected Output: -1
+        System.out.println("case1:"+minInitialExp(jungle1)); // Expected Output: -1
 
         int[][] jungle2 = {
                 {-2, -3, 4},
                 {-1, -1, 1},
                 {3, -2, 0}
         };
-        System.out.println(minInitialExp(jungle2)); // Expected Output: 5
+        System.out.println("case2"+minInitialExp(jungle2)); // Expected Output: 5
 
         int[][] jungle3 = {
                 {0 ,-2 ,-3 ,1},
                 {-1, 4 ,0 ,-2},
                 {1 ,-2 ,-3 ,0}
         };
-        System.out.println(minInitialExp(jungle3)); // 0
+        System.out.println("case3:"+minInitialExp(jungle3)); // 0
+
+        int[][] jungle4 = {
+                {0, -1, -1},
+                {-2, -3, -4},
+                {1, 2, 0}
+        };
+        System.out.println("case4:"+minInitialExp(jungle4)); // Expected Output: 0
     }
 }
