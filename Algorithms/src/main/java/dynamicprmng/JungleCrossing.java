@@ -43,68 +43,76 @@ public class JungleCrossing {
      * find the minimum initial exp required to reach the bottom-right cell with a positive exp.
      * You can only move right or down.
      *
-     * //@param grid A 2D array of integers representing the jungle.
+     * @param dungeon A 2D array of integers representing the jungle.
      * @return The minimum initial exp required.
      */
-
-
-    public static int minInitialExp(int[][] grid) {
-        int n = grid.length;
-        int m = grid[0].length;
+    public static int minInitialExp(int[][] dungeon) {
+        int n = dungeon.length;
+        int m = dungeon[0].length;
         int[][] dp = new int[n][m];
-        dp[0][0] = grid[0][0];
 
-        // Fill first row
+        // Initialize the starting cell
+        dp[0][0] = dungeon[0][0];
+
+        // Fill the first row
         for (int j = 1; j < m; j++) {
-            dp[0][j] = dp[0][j - 1] + grid[0][j];
+            dp[0][j] = dp[0][j-1] + dungeon[0][j];
         }
 
-        // Fill first column
+        // Fill the first column
         for (int i = 1; i < n; i++) {
-            dp[i][0] = dp[i - 1][0] + grid[i][0];
+            dp[i][0] = dp[i-1][0] + dungeon[i][0];
         }
 
-        // Fill rest of the dp matrix
+        // Fill the rest of the table
         for (int i = 1; i < n; i++) {
             for (int j = 1; j < m; j++) {
-                dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]) + grid[i][j];
+                dp[i][j] = Math.max(dp[i-1][j], dp[i][j-1]) + dungeon[i][j];
             }
         }
 
-        int maxPathSum = dp[n - 1][m - 1];
-
-        // X must be such that X + maxPathSum > 0
-        return 1 - maxPathSum;
+        int maxSum = dp[n-1][m-1];
+        print(dp);
+        return 1 - maxSum;
     }
 
-
+    private static void print(int[][] dp) {
+        for (int[] ints : dp) {
+            System.out.println(Arrays.toString(ints));
+        }
+    }
     public static void main(String[] args) {
-
         int[][] jungle1 = {
                 {0, 1},
                 {2, 0}
         };
-        System.out.println("case1:"+minInitialExp(jungle1)); // Expected Output: -1
+        System.out.println("case1:" + minInitialExp(jungle1)); // Expected Output: -1
 
         int[][] jungle2 = {
                 {-2, -3, 4},
                 {-1, -1, 1},
                 {3, -2, 0}
         };
-        System.out.println("case2"+minInitialExp(jungle2)); // Expected Output: 5
+        System.out.println("case2:" + minInitialExp(jungle2)); // Expected Output: 5
 
         int[][] jungle3 = {
-                {0 ,-2 ,-3 ,1},
-                {-1, 4 ,0 ,-2},
-                {1 ,-2 ,-3 ,0}
+                {0, -2, -3, 1},
+                {-1, 4, 0, -2},
+                {1, -2, -3, 0}
         };
-        System.out.println("case3:"+minInitialExp(jungle3)); // 0
+        System.out.println("case3:" + minInitialExp(jungle3)); // Expected Output: 0
 
         int[][] jungle4 = {
                 {0, -1, -1},
                 {-2, -3, -4},
                 {1, 2, 0}
         };
-        System.out.println("case4:"+minInitialExp(jungle4)); // Expected Output: 0
+        System.out.println("case4:" + minInitialExp(jungle4)); // Expected Output: 0
+
+        int[][] jungle5={
+                {0,1,-3},
+                {1,-2,0}
+        };
+        System.out.println("case5:" + minInitialExp(jungle5)); // Expected Output: 2
     }
 }
