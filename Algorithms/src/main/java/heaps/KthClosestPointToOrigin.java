@@ -1,5 +1,7 @@
 package heaps;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.PriorityQueue;
 
 /*
@@ -34,27 +36,30 @@ public class KthClosestPointToOrigin {
     public static int[][] kClosest(int[][] points, int k) {
         // Create a max heap to store the k closest points.  It's a max heap
         // because we want to keep the largest distance points out.
+        // Create a max-heap based on squared distance from origin
         PriorityQueue<int[]> maxHeap = new PriorityQueue<>(
-                (a, b) -> (b[0] * b[0] + b[1] * b[1]) - (a[0] * a[0] + a[1] * a[1])
+                (a, b) -> (b[0]*b[0] + b[1]*b[1]) - (a[0]*a[0] + a[1]*a[1])
         );
 
-        // Iterate through all the points.
         for (int[] point : points) {
-            // Add the point to the max heap.
-            maxHeap.add(point);
-            // If the heap size is greater than k, remove the point with the
-            // largest distance.
+            maxHeap.offer(point);
             if (maxHeap.size() > k) {
                 maxHeap.poll();
             }
         }
 
-        // Create an array to store the k closest points.
-        int[][] result = new int[k][2];
-        // Get the k closest points from the max heap.
-        for (int i = k - 1; i >= 0; i--) {
-            result[i] = maxHeap.poll();
+        // Extract elements from the heap to form the result
+        List<int[]> resultList = new ArrayList<>();
+        while (!maxHeap.isEmpty()) {
+            resultList.add(maxHeap.poll());
         }
+
+        // Convert the list to a 2D array
+        int[][] result = new int[resultList.size()][];
+        for (int i = 0; i < result.length; i++) {
+            result[i] = resultList.get(i);
+        }
+
         return result;
     }
 
