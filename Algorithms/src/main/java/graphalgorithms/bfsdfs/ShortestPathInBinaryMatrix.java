@@ -50,21 +50,29 @@ Constraints:
 Note:The function should return the result. The driver code will handle printing the output.
  */
 public class ShortestPathInBinaryMatrix {
-    public static int shortestPath(int[][] grid, int x, int y) {
-        int n = grid.length;
-        int m = grid[0].length;
+    // Directions for up, down, left, right movement
+    private static final int[][] DIRECTIONS = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+    public static int shortestPath(int[][] A, int X, int Y) {
+        int N = A.length;
+        int M = A[0].length;
 
-        // Check if the start or destination cell is blocked
-        if (grid[0][0] == 1 || grid[x][y] == 1) {
+        // Check if start or destination is blocked
+        if (A[0][0] == 0 || A[X][Y] == 0) {
             return -1;
         }
 
-        // Directions for moving in the grid (right, down, left, up)
-        int[][] directions = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+        // If we're already at the destination
+        if (X == 0 && Y == 0) {
+            return 0;
+        }
 
-        // BFS queue
+        // BFS setup
         Queue<int[]> queue = new LinkedList<>();
-        queue.offer(new int[]{0, 0, 1}); // {row, col, distance}
+        boolean[][] visited = new boolean[N][M];
+
+        // Start from (0, 0)
+        queue.offer(new int[]{0, 0, 0}); // {row, col, distance}
+        visited[0][0] = true;
 
         while (!queue.isEmpty()) {
             int[] current = queue.poll();
@@ -72,44 +80,114 @@ public class ShortestPathInBinaryMatrix {
             int col = current[1];
             int dist = current[2];
 
-            // If we reached the destination
-            if (row == x && col == y) {
-                return dist;
-            }
-
-            // Explore all possible directions
-            for (int[] dir : directions) {
+            // Check all 4 directions
+            for (int[] dir : DIRECTIONS) {
                 int newRow = row + dir[0];
                 int newCol = col + dir[1];
 
-                // Check bounds and if the cell is not blocked
-                if (newRow >= 0 && newRow < n && newCol >= 0 && newCol < m && grid[newRow][newCol] == 0) {
-                    grid[newRow][newCol] = 1; // Mark as visited
-                    queue.offer(new int[]{newRow, newCol, dist + 1});
+                // Check bounds
+                if (newRow >= 0 && newRow < N && newCol >= 0 && newCol < M) {
+                    // Check if cell is walkable and not visited
+                    if (A[newRow][newCol] == 1 && !visited[newRow][newCol]) {
+                        // Check if we reached destination
+                        if (newRow == X && newCol == Y) {
+                            return dist + 1;
+                        }
+
+                        // Add to queue for further exploration
+                        queue.offer(new int[]{newRow, newCol, dist + 1});
+                        visited[newRow][newCol] = true;
+                    }
                 }
             }
         }
 
-        // If we exhaust the queue without finding the destination
+        // No path found
         return -1;
     }
 
+    // Test method with the provided examples
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        int n = scanner.nextInt();
-        int m = scanner.nextInt();
-        int[][] grid = new int[n][m];
+        // Example 1
+        int[][] matrix1 = {
+                {1, 0, 0, 0},
+                {1, 1, 0, 1},
+                {0, 1, 1, 1}
+        };
+        System.out.println("Example 1 Result: " + shortestPath(matrix1, 2, 3)); // Expected: 5
 
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
-                grid[i][j] = scanner.nextInt();
+        // Example 2
+        int[][] matrix2 = {
+                {1, 1, 1, 0},
+                {0, 0, 0, 0},
+                {1, 1, 0, 1},
+                {0, 0, 1, 1}
+        };
+        System.out.println("Example 2 Result: " + shortestPath(matrix2, 1, 3)); // Expected: -1
+
+        // Additional test case - destination at start
+        int[][] matrix3 = {{1}};
+        System.out.println("Start = Destination Result: " + shortestPath(matrix3, 0, 0)); // Expected: 0
+    }
+}
+
+// Alternative implementation using a custom Cell class (more readable)
+class Cell {
+    int row, col, distance;
+
+    Cell(int row, int col, int distance) {
+        this.row = row;
+        this.col = col;
+        this.distance = distance;
+    }
+}
+
+class AlternativeShortestPath {
+    private static final int[][] DIRECTIONS = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+
+    public static int shortestPath(int[][] matrix, int destX, int destY) {
+        int n = matrix.length;
+        int m = matrix[0].length;
+
+        if (matrix[0][0] == 0 || matrix[destX][destY] == 0) {
+            return -1;
+        }
+
+        if (destX == 0 && destY == 0) {
+            return 0;
+        }
+
+        Queue<Cell> queue = new LinkedList<>();
+        boolean[][] visited = new boolean[n][m];
+
+        queue.offer(new Cell(0, 0, 0));
+        visited[0][0] = true;
+
+        while (!queue.isEmpty()) {
+            Cell current = queue.poll();
+
+            for (int[] dir : DIRECTIONS) {
+                int newRow = current.row + dir[0];
+                int newCol = current.col + dir[1];
+
+                if (isValid(newRow, newCol, n, m) &&
+                        matrix[newRow][newCol] == 1 &&
+                        !visited[newRow][newCol]) {
+
+                    if (newRow == destX && newCol == destY) {
+                        return current.distance + 1;
+                    }
+
+                    queue.offer(new Cell(newRow, newCol, current.distance + 1));
+                    visited[newRow][newCol] = true;
+                }
             }
         }
 
-        int x = scanner.nextInt();
-        int y = scanner.nextInt();
+        return -1;
+    }
 
-        System.out.println(shortestPath(grid, x, y));
-        scanner.close();
+    private static boolean isValid(int row, int col, int n, int m) {
+        return row >= 0 && row < n && col >= 0 && col < m;
     }
 }
