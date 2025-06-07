@@ -81,97 +81,141 @@ Note:The function should print the result.
  */
 
 
+/**
+ * The Line class represents a connection (an edge) between two balls (nodes).
+ * It stores the two connected balls (p1, p2) and the length of the line.
+ * It implements the Comparable interface to allow sorting a list of lines based on their length.
+ */
+class Line {
+    int length;
+    int p1; // Represents the index of the first ball
+    int p2; // Represents the index of the second ball
 
+    public Line(int p1, int p2, int length) {
+        this.p1 = p1;
+        this.p2 = p2;
+        this.length = length;
+    }
+}
+
+/**
+ * The DSU (Disjoint Set Union) or Union-Find data structure.
+ * It's used to efficiently track which balls are connected in the same component
+ * and to detect if adding a new line would form a cycle.
+ */
+class DSU {
+    int[] parent;
+
+    /**
+     * Initializes the DSU structure.
+     * @param n The number of elements (balls) to manage.
+     * Each ball is initially in its own separate set.
+     */
+    public DSU(int n) {
+        parent = new int[n];
+        for (int i = 0; i < n; i++) {
+            parent[i] = i; // Each node is its own parent initially
+        }
+    }
+
+    /**
+     * Finds the representative (or root) of the set that element 'i' belongs to.
+     * It uses path compression for optimization, making subsequent finds faster.
+     * @param i The element to find.
+     * @return The representative of the set.
+     */
+    public int find(int i) {
+        if (parent[i] == i) {
+            return i;
+        }
+        // Path compression: set the parent directly to the root
+        return parent[i] = find(parent[i]);
+    }
+
+    /**
+     * Merges the sets containing elements 'i' and 'j'.
+     * @param i An element in the first set.
+     * @param j An element in the second set.
+     */
+    public void union(int i, int j) {
+        int rootI = find(i);
+        int rootJ = find(j);
+        if (rootI != rootJ) {
+            parent[rootI] = rootJ;
+        }
+    }
+}
+
+/**
+ * Main class to run the program for Rohan's Game.
+ */
 public class RohansGame {
-    static class Edge {
-        int u, v, weight, index;
-        public Edge(int u, int v, int weight, int index) {
-            this.u = u;
-            this.v = v;
-            this.weight = weight;
-            this.index = index;
-        }
-    }
 
-    static class UnionFind {
-        private int[] parent;
-        private int[] rank;
+    /**
+     * Solves the problem by finding the Minimum Spanning Tree (MST) using Kruskal's algorithm.
+     * @param n The total number of balls (nodes).
+     * @param lines A list of all possible lines (edges) between the balls.
+     */
+    public static void findMinimumLines(int n, Line[] lines) {
+        // Step 1 of Kruskal's: Sort all lines by length in non-decreasing order.
+        Arrays.sort(lines, Comparator.comparingInt(line -> line.length));
 
-        public UnionFind(int size) {
-            parent = new int[size];
-            rank = new int[size];
-            for (int i = 0; i < size; i++) {
-                parent[i] = i;
-                rank[i] = 0;
-            }
+        // Find the maximum node ID to size the DSU array robustly.
+        int maxNodeId = 0;
+        for (Line line : lines) {
+            maxNodeId = Math.max(maxNodeId, Math.max(line.p1, line.p2));
         }
 
-        public int find(int x) {
-            if (parent[x] != x) {
-                parent[x] = find(parent[x]);
-            }
-            return parent[x];
-        }
+        DSU dsu = new DSU(maxNodeId + 1);
+        List<Line> mst = new ArrayList<>(); // This will store the final lines in the MST.
+        int edgesCount = 0;
 
-        public boolean union(int x, int y) {
-            int rootX = find(x);
-            int rootY = find(y);
-            if (rootX == rootY) {
-                return false;
-            }
+        // Step 2: Iterate through sorted lines and add to MST if no cycle is formed.
+        for (Line line : lines) {
+            // Check if the two balls of the current line are already connected.
+            // If their roots in the DSU are different, they are in different components.
+            if (dsu.find(line.p1) != dsu.find(line.p2)) {
+                // If not connected, add this line to our MST.
+                mst.add(line);
 
-            if (rank[rootX] < rank[rootY]) {
-                parent[rootX] = rootY;
-            } else if (rank[rootX] > rank[rootY]) {
-                parent[rootY] = rootX;
-            } else {
-                parent[rootY] = rootX;
-                rank[rootX]++;
-            }
-            return true;
-        }
-    }
+                // Merge the two components.
+                dsu.union(line.p1, line.p2);
 
-    public static List<Edge> findMST(int n, List<Edge> edges) {
-        Collections.sort(edges, (a, b) -> {
-            if (a.weight != b.weight) {
-                return Integer.compare(a.weight, b.weight);
-            } else {
-                return Integer.compare(a.index, b.index);
-            }
-        });
-
-        UnionFind uf = new UnionFind(n);
-        List<Edge> mstEdges = new ArrayList<>(n - 1);
-
-        for (Edge edge : edges) {
-            if (mstEdges.size() == n - 1) break;
-            if (uf.union(edge.u, edge.v)) {
-                mstEdges.add(edge);
+                edgesCount++;
+                // An MST for a graph with 'n' nodes will have 'n-1' edges.
+                // We can stop once we have found enough edges.
+                if (edgesCount == n - 1) {
+                    break;
+                }
             }
         }
 
-        Collections.sort(mstEdges, Comparator.comparingInt(a -> a.index));
-        return mstEdges;
+        // Step 3: Print the resulting lines that form the minimal structure.
+        for (Line line : mst) {
+            System.out.println(line.p1 + " " + line.p2);
+        }
     }
 
     public static void main(String[] args) {
-        // Static stub for testing
-        int n = 4;
-        int l = 6;
-        List<Edge> edges = Arrays.asList(
-                new Edge(0, 1, 2, 0),
-                new Edge(0, 2, 6, 1),
-                new Edge(0, 3, 4, 2),
-                new Edge(2, 3, 5, 3),
-                new Edge(1, 3, 3, 4),
-                new Edge(1, 2, 3, 5)
-        );
+        Scanner scanner = new Scanner(System.in);
 
-        List<Edge> mstEdges = findMST(n, edges);
+        // Read the number of balls 'n' and total number of lines 'l'.
+        int n = scanner.nextInt();
+        int l = scanner.nextInt();
 
-        for (Edge edge : mstEdges) {
-            System.out.println(edge.u + " " + edge.v);
+        Line[] allLines = new Line[l];
+
+        // Read all 'l' lines from the input.
+        for (int i = 0; i < l; i++) {
+            int p1 = scanner.nextInt();
+            int p2 = scanner.nextInt();
+            int length = scanner.nextInt();
+            allLines[i]=new Line(p1, p2, length);
         }
+
+        // Call the function to find and print the solution.
+        findMinimumLines(n, allLines);
+
+        scanner.close();
     }
 }
