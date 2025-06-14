@@ -59,85 +59,15 @@ Note:The function should return the result. The driver code will handle printing
 import java.util.Arrays;
 import java.util.Scanner;
 
-class Monster {
-    int points;
-    int deadline;
-    int index;
-
-    Monster(int points, int deadline, int index) {
-        this.points = points;
-        this.deadline = deadline;
-        this.index = index;
-    }
-}
-
 public class SimonAndTheMonsters {
-    public static int maxPoints(int n, int[] points, int[] deadlines) {
-        // Create array of monsters
-        Monster[] monsters = new Monster[n];
-        for (int i = 0; i < n; i++) {
-            monsters[i] = new Monster(points[i], deadlines[i], i);
+    static class Pair {
+        int points;
+        int timer;
+
+        Pair(int points, int timer) {
+            this.points = points;
+            this.timer = timer;
         }
-
-        // Sort monsters by points in descending order (greedy choice)
-        Arrays.sort(monsters, (a, b) -> Integer.compare(b.points, a.points));
-
-        // Find maximum deadline to determine time slots
-        int maxDeadline = 0;
-        for (int deadline : deadlines) {
-            maxDeadline = Math.max(maxDeadline, deadline);
-        }
-
-        // Array to track which time slots are occupied
-        boolean[] timeSlots = new boolean[maxDeadline + 1];
-        int totalPoints = 0;
-
-        // Process monsters in order of decreasing points
-        for (Monster monster : monsters) {
-            // Try to schedule this monster at the latest possible time before its deadline
-            for (int time = monster.deadline; time >= 1; time--) {
-                if (!timeSlots[time]) {
-                    // Schedule this monster at this time
-                    timeSlots[time] = true;
-                    totalPoints += monster.points;
-                    break;
-                }
-            }
-        }
-
-        return totalPoints;
-    }
-
-    // Alternative approach using Union-Find for better efficiency (optional)
-    public static int maxPointsOptimized(int n, int[] points, int[] deadlines) {
-        Monster[] monsters = new Monster[n];
-        for (int i = 0; i < n; i++) {
-            monsters[i] = new Monster(points[i], deadlines[i], i);
-        }
-
-        // Sort by points in descending order
-        Arrays.sort(monsters, (a, b) -> Integer.compare(b.points, a.points));
-
-        int maxDeadline = Arrays.stream(deadlines).max().orElse(0);
-
-        // Union-Find to efficiently find next available slot
-        int[] parent = new int[maxDeadline + 2];
-        for (int i = 0; i <= maxDeadline + 1; i++) {
-            parent[i] = i;
-        }
-
-        int totalPoints = 0;
-
-        for (Monster monster : monsters) {
-            int availableSlot = find(parent, monster.deadline);
-            if (availableSlot > 0) {
-                totalPoints += monster.points;
-                // Union with next slot (mark this slot as used)
-                parent[availableSlot] = availableSlot - 1;
-            }
-        }
-
-        return totalPoints;
     }
 
     private static int find(int[] parent, int x) {
@@ -147,98 +77,60 @@ public class SimonAndTheMonsters {
         return parent[x];
     }
 
-    // Method to show the detailed solution
-    public static void showDetailedSolution(int n, int[] points, int[] deadlines) {
-        Monster[] monsters = new Monster[n];
+    public static int solve(int[] points, int[] timer, int n) {
+        if (n == 0) {
+            return 0;
+        }
+
+        int maxDeadline = 0;
+        for (int t : timer) {
+            if (t > maxDeadline) {
+                maxDeadline = t;
+            }
+        }
+
+        int[] parent = new int[maxDeadline + 1];
+        for (int i = 0; i <= maxDeadline; i++) {
+            parent[i] = i;
+        }
+
+        java.util.List<Pair> monsters = new java.util.ArrayList<>();
         for (int i = 0; i < n; i++) {
-            monsters[i] = new Monster(points[i], deadlines[i], i + 1);
+            monsters.add(new Pair(points[i], timer[i]));
         }
 
-        Arrays.sort(monsters, (a, b) -> Integer.compare(b.points, a.points));
+        java.util.Collections.sort(monsters, (a, b) -> b.points - a.points);
 
-        int maxDeadline = Arrays.stream(deadlines).max().orElse(0);
-        boolean[] timeSlots = new boolean[maxDeadline + 1];
         int totalPoints = 0;
-
-        System.out.println("Greedy selection process:");
-        System.out.println("Monsters sorted by points (descending):");
-
-        for (Monster monster : monsters) {
-            System.out.printf("Monster %d: %d points, deadline %d\n",
-                    monster.index, monster.points, monster.deadline);
-        }
-
-        System.out.println("\nScheduling process:");
-
-        for (Monster monster : monsters) {
-            boolean scheduled = false;
-            for (int time = monster.deadline; time >= 1; time--) {
-                if (!timeSlots[time]) {
-                    timeSlots[time] = true;
-                    totalPoints += monster.points;
-                    System.out.printf("Kill Monster %d (%d points) at time %d\n",
-                            monster.index, monster.points, time);
-                    scheduled = true;
-                    break;
-                }
+        for (Pair monster : monsters) {
+            int d = monster.timer;
+            if (d > maxDeadline) {
+                d = maxDeadline;
             }
-            if (!scheduled) {
-                System.out.printf("Cannot schedule Monster %d (%d points) within deadline %d\n",
-                        monster.index, monster.points, monster.deadline);
+            int slot = find(parent, d);
+            if (slot > 0) {
+                totalPoints += monster.points;
+                parent[slot] = find(parent, slot - 1);
             }
         }
 
-        System.out.println("Total points: " + totalPoints);
+        return totalPoints;
     }
 
-    // Driver code for testing
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-
-        // Test case 1
-        System.out.println("=== Test Case 1 ===");
-        int n1 = 3;
-        int[] points1 = {50, 80, 90};
-        int[] deadlines1 = {1, 2, 2};
-        System.out.println("Points: " + Arrays.toString(points1));
-        System.out.println("Deadlines: " + Arrays.toString(deadlines1));
-        System.out.println("Max Points: " + maxPoints(n1, points1, deadlines1));
-        System.out.println();
-        showDetailedSolution(n1, points1, deadlines1);
-        System.out.println();
-
-        // Test case 2
-        System.out.println("=== Test Case 2 ===");
-        int n2 = 5;
-        int[] points2 = {100, 19, 27, 25, 15};
-        int[] deadlines2 = {2, 1, 2, 1, 3};
-        System.out.println("Points: " + Arrays.toString(points2));
-        System.out.println("Deadlines: " + Arrays.toString(deadlines2));
-        System.out.println("Max Points: " + maxPoints(n2, points2, deadlines2));
-        System.out.println();
-        showDetailedSolution(n2, points2, deadlines2);
-        System.out.println();
-
-        // Interactive input
-        System.out.println("=== Interactive Mode ===");
-        System.out.print("Enter number of monsters: ");
-        int n = sc.nextInt();
-
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
         int[] points = new int[n];
-        int[] deadlines = new int[n];
+        int[] timer = new int[n];
 
-        System.out.println("Enter points for each monster:");
         for (int i = 0; i < n; i++) {
-            points[i] = sc.nextInt();
+            points[i] = scanner.nextInt();
+        }
+        for (int i = 0; i < n; i++) {
+            timer[i] = scanner.nextInt();
         }
 
-        System.out.println("Enter deadlines for each monster:");
-        for (int i = 0; i < n; i++) {
-            deadlines[i] = sc.nextInt();
-        }
-
-        System.out.println("Maximum points achievable: " + maxPoints(n, points, deadlines));
-
-        sc.close();
+        int result = solve(points, timer, n);
+        System.out.println(result);
     }
 }
