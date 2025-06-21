@@ -1,0 +1,1 @@
+Refers to the process of flipping the order of elements within a data structure, typically done to change the sequence or orientation of the data.

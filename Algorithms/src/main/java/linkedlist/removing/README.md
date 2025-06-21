@@ -1,0 +1,1 @@
+Refers to the process of deleting or eliminating elements from a data structure, often done to modify the size or content of the structure to accommodate specific requirements or operations.

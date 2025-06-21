@@ -1,0 +1,1 @@
+Refers to the process of arranging elements in a specific order, such as ascending or descending, to facilitate efficient searching and data manipulation.

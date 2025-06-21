@@ -1,0 +1,1 @@
+Refers to dividing a data structure or a collection of elements into multiple parts based on certain criteria or conditions, allowing for easier processing and manipulation of data.

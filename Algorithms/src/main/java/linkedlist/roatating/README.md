@@ -1,0 +1,1 @@
+Refers to the process of shifting elements within a data structure in a circular manner, often used to reposition elements or modify the order of elements.
