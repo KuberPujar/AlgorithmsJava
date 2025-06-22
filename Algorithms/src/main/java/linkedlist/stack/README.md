@@ -1,0 +1,1 @@
+A stack is a data structure that follows the Last-In-First-Out (LIFO) principle, where elements are added and removed from the top, allowing efficient insertion and deletion at one end.

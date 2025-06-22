@@ -1,0 +1,1 @@
+Refers to solving a problem using iterative loops and iterative steps, where the solution is obtained by executing a set of instructions repeatedly until the desired outcome is achieved, without relying on recursive function calls.

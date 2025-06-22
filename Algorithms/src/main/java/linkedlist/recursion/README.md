@@ -1,0 +1,1 @@
+Refers to the process of solving a problem by breaking it down into smaller, similar subproblems, where each subproblem is solved by calling the same function recursively until a base case is reached.

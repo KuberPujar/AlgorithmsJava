@@ -1,0 +1,1 @@
+Divide and conquer is a problem-solving technique that involves breaking down a complex problem into smaller, more manageable subproblems, solving them independently, and combining their solutions to solve the original problem efficiently.

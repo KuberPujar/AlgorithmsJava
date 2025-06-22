@@ -1,0 +1,1 @@
+Refers to using multiple variables or references to traverse or manipulate data structures simultaneously, enabling efficient operations such as searching, merging, or partitioning.

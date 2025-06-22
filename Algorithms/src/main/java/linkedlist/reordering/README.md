@@ -1,0 +1,1 @@
+Refers to changing the arrangement or sequence of elements within a data structure, typically done to optimise performance, improve accessibility, or fulfill specific ordering requirements.

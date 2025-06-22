@@ -1,0 +1,1 @@
+Hashing is a technique used in computer science and data structures to map data of arbitrary size to fixed-size values, typically numeric or alphanumeric.It is commonly used for indexing and retrieving data quickly, as the hash function provides a unique identifier or address for each data item, allowing efficient storage and retrieval operations.
