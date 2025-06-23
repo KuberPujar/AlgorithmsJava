@@ -1,0 +1,1 @@
+A specialized stack used to solve problems related to finding next greater/smaller elements or maintaining monotonic sequences.

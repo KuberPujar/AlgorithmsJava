@@ -1,0 +1,1 @@
+A basic data structure that follows the Last-In-First-Out (LIFO) principle, allowing operations like push and pop.
