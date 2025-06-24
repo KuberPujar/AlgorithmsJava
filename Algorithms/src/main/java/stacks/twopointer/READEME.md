@@ -1,0 +1,1 @@
+Using two pointers to track elements or positions in a stack-based algorithm or problem-solving approach.

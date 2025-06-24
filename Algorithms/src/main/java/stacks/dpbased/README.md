@@ -1,0 +1,1 @@
+Applying dynamic programming techniques to solve problems involving stacks or utilizing stack-like operations.
