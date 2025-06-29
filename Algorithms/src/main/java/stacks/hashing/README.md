@@ -1,0 +1,1 @@
+Using hashing techniques to store and retrieve elements or perform operations involving stacks.

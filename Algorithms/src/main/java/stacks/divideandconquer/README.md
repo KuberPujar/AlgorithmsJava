@@ -1,0 +1,1 @@
+Applying divide and conquer strategies in stack-related problems to break them into smaller subproblems.
