@@ -1,0 +1,1 @@
+Design in Queue involves designing and implementing custom data structures or algorithms to efficiently handle operations in a queue, such as enqueue, dequeue, peek, or size calculations.
