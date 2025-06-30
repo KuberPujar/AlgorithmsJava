@@ -1,0 +1,1 @@
+Simulation in Queue involves using a queue data structure to simulate real-world scenarios or processes, often used in modeling systems, event-driven simulations, or process scheduling.

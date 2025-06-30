@@ -1,0 +1,1 @@
+Sliding Window in Queue involves using a sliding window technique to process or analyse a fixed-size window over the elements in the queue, facilitating efficient window-based computations or pattern matching.

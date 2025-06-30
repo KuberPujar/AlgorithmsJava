@@ -1,0 +1,1 @@
+Hashing in Queue involves utilising hash functions or hash-based data structures to efficiently store, retrieve, or identify elements in a queue, based on their unique hash values.

@@ -1,0 +1,1 @@
+Recursion in Queue involves solving queue-related problems or performing operations using recursive algorithms, where a function calls itself to process or manipulate elements in the queue.
