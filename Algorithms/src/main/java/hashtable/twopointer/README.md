@@ -1,0 +1,1 @@
+Two Pointer in Hash Table involves using two pointers or indices to traverse or manipulate elements in a hash table, often used in algorithms that require simultaneous access or comparison of multiple elements.

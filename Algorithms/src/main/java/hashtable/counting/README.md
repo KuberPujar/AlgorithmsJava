@@ -1,0 +1,1 @@
+Counting in Hash Table involves using a hash table to efficiently count the occurrences or frequencies of elements in a collection, often used in counting sort algorithms or frequency analysis.

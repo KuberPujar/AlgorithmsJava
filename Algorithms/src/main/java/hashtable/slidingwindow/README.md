@@ -1,0 +1,1 @@
+Sliding Window in Hash Table involves utilising a hash table to maintain a fixed-size window over a collection of elements, facilitating efficient window-based computations or statistics.

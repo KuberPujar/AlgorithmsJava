@@ -1,0 +1,1 @@
+Simple Hashing involves transforming data or keys into a unique numerical value using a hash function for efficient storage, retrieval, or identification in a hash table.

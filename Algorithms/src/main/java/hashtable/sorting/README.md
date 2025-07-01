@@ -1,0 +1,1 @@
+Sorting in Hash Table refers to arranging the elements of a hash table in a specific order, typically based on the keys, to improve search or traversal operations.

@@ -1,0 +1,1 @@
+Binary Search in Hash Table refers to performing a binary search on the elements of a hash table, utilising the keys and the inherent ordering properties to efficiently locate a specific element.

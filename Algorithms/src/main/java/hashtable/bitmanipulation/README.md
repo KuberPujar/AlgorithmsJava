@@ -1,0 +1,1 @@
+Bit Manipulation in Hash Table involves performing bitwise operations or techniques on the elements or keys of a hash table for specialised bit-level operations or optimisations.
