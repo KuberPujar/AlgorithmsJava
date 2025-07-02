@@ -1,0 +1,1 @@
+Tree-based in Hash Table involves incorporating tree structures, such as binary search trees or AVL trees, in the implementation or operations of a hash table, enhancing organisation, search, or deletion of elements.

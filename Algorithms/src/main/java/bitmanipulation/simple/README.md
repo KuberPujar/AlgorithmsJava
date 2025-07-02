@@ -1,0 +1,42 @@
+Simple bit manipulation involves manipulating individual bits of binary numbers using bitwise operators to perform operations such as setting, clearing, toggling, or checking the value of specific bits, providing compact and efficient solutions to certain computational problems.
+# Simple Bit Manipulation
+This package contains simple bit manipulation algorithms that utilize bitwise operations to efficiently solve problems related to binary numbers. The algorithms include setting, clearing, toggling, and checking bits, which can lead to more compact and faster solutions compared to traditional arithmetic operations.
+## Algorithms
+- **Set Bit**: Set a specific bit in a number to 1.
+- **Clear Bit**: Clear a specific bit in a number to 0.
+- **Toggle Bit**: Toggle a specific bit in a number (change 0 to 1 or 1 to 0).
+- **Check Bit**: Check if a specific bit in a number is set (1) or not (0).
+- **Count Set Bits**: Count the number of bits that are set to 1 in a number.
+- **Is Power of Two**: Check if a number is a power of two using bit manipulation.
+- **Swap Bits**: Swap two bits in a number.
+- **Reverse Bits**: Reverse the bits of a number.
+- **Bitwise AND, OR, XOR**: Perform bitwise operations to combine or compare bits of two numbers.
+- **Bit Shifting**: Shift bits left or right to multiply or divide by powers of two.
+- **Bit Masking**: Create masks to isolate or manipulate specific bits in a number.
+- **Bit Counting**: Count the number of bits in a number, including leading and trailing zeros.
+- **Bit Rotation**: Rotate bits of a number to the left or right.
+- **Bit Comparison**: Compare bits of two numbers to determine equality or differences.
+- **Bit Interleaving**: Interleave bits of two numbers to create a new number.
+- **Bit Packing**: Pack multiple smaller values into a single larger value using bit manipulation.
+- **Bit Unpacking**: Unpack a larger value into multiple smaller values using bit manipulation.
+- **Bit Reversal**: Reverse the order of bits in a number.
+- **Bit Extraction**: Extract specific bits from a number based on a mask.
+- **Bit Insertion**: Insert bits into a number at a specific position.
+- **Bit Comparison**: Compare bits of two numbers to determine equality or differences.
+- **Bitwise Negation**: Negate the bits of a number (flip all bits).
+- **Bitwise Identity**: Demonstrate the identity properties of bitwise operations (e.g., x & 0 = 0, x | 0 = x).
+- **Bitwise De Morgan's Laws**: Apply De Morgan's laws to bitwise operations (e.g., ~(x & y) = ~x | ~y).
+- **Bitwise Distributive Law**: Show how bitwise operations distribute over each other (e.g., x & (y | z) = (x & y) | (x & z)).
+- **Bitwise Associative Law**: Demonstrate the associative properties of bitwise operations (e.g., x & (y & z) = (x & y) & z).
+- **Bitwise Commutative Law**: Show the commutative properties of bitwise operations (e.g., x & y = y & x).
+- **Bitwise Identity Law**: Demonstrate the identity properties of bitwise operations (e.g., x & 1 = x, x | 0 = x).
+- **Bitwise Absorption Law**: Show how bitwise operations absorb each other (e.g., x & (x | y) = x).
+- **Bitwise Negation Law**: Demonstrate the negation properties of bitwise operations (e.g., ~x & x = 0, ~x | x = -1).
+- **Bitwise Idempotent Law**: Show how bitwise operations are idempotent (e.g., x & x = x, x | x = x).
+- **Bitwise Complement**: Calculate the bitwise complement of a number.
+- **Bitwise Identity**: Demonstrate the identity properties of bitwise operations (e.g., x & 0 = 0, x | 0 = x).
+- **Bitwise Negation**: Negate the bits of a number (flip all bits).
+- **Bitwise Identity**: Demonstrate the identity properties of bitwise operations (e.g., x & 0 = 0, x | 0 = x).
+- **Bitwise De Morgan's Laws**: Apply De Morgan's laws to bitwise operations (e.g., ~(x & y) = ~x | ~y).
+- **Bitwise Distributive Law**: Show how bitwise operations distribute over each other (e.g., x & (y | z) = (x & y) | (x & z)).
+- **Bitwise Associative Law**: Demonstrate the associative properties of bitwise operations (e.g., x & (y & z) = (x & y) & z).

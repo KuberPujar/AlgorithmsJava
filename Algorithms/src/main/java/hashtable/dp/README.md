@@ -1,0 +1,1 @@
+DP based in Hash Table refers to utilising dynamic programming techniques in the implementation or operations of a hash table, optimising and storing intermediate results for efficient computations.

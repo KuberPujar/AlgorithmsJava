@@ -1,0 +1,1 @@
+Matrix in Hash Table refers to representing a hash table using a two-dimensional matrix or array, where each element corresponds to a specific position based on the hash function, facilitating efficient hash table operations.

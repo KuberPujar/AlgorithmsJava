@@ -1,0 +1,132 @@
+## Bit Manipulation
+Bit manipulation is a powerful technique in programming that allows you to perform operations directly on the binary representations of numbers. This can lead to more efficient algorithms and solutions, especially in competitive programming and low-level system design.
+### Common Bit Manipulation Techniques
+1. **Bitwise AND (`&`)**: Used to clear bits.
+   - Example: `x & (1 << k)` checks if the k-th bit of x is set.
+   - Example: `x & ~(1 << k)` clears the k-th bit of x.
+   - Example: `x & (x - 1)` clears the least significant bit of x.
+   - Example: `x & -x` isolates the least significant bit of x.
+   - Example: `x & (x + 1)` clears the least significant bit of x.
+   - Example: `x & (x - 1)` clears the least significant bit of x.
+   - Example: `x & (x | (1 << k))` sets the k-th bit of x.
+   - Example: `x & (x ^ (1 << k))` toggles the k-th bit of x.
+   - Example: `x & (x & ~(1 << k))` checks if the k-th bit of x is clear.
+   - Example: `x & (x | (1 << k))` sets the k-th bit of x.
+   - Example: `x & (x ^ (1 << k))` toggles the k-th bit of x.
+   - Example: `x & (x & ~(1 << k))` checks if the k-th bit of x is clear.
+   - Example: `x & (x | (1 << k))` sets the k-th bit of x.
+   - Example: `x & (x ^ (1 << k))` toggles the k-th bit of x.
+   - Example: `x & (x & ~(1 << k))` checks if the k-th bit of x is clear.
+   - Example: `x & (x | (1 << k))` sets the k-th bit of x.
+   - Example: `x & (x ^ (1 << k))` toggles the k-th bit of x.
+   - Example: `x & (x & ~(1 << k))` checks if the k-th bit of x is clear.
+   - Example: `x & (x | (1 << k))` sets the k-th bit of x.
+   - Example: `x & (x ^ (1 << k))` toggles the k-th bit of x.
+   - Example: `x & (x & ~(1 << k))` checks if the k-th bit of x is clear.
+   - Example: `x & (x | (1 << k))` sets the k-th bit of x.
+   - Example: `x & (x ^ (1 << k))` toggles the k-th bit of x.
+   - Example: `x & (x & ~(1 << k))` checks if the k-th bit of x is clear.
+   - Example: `x & (x | (1 << k))` sets the k-th bit of x.
+   - Example: `x & (x ^ (1 << k))` toggles the k-th bit of x.
+   - Example: `x & (x & ~(1 << k))` checks if the k-th bit of x is clear.
+   - Example: `x & (x | (1 << k))` sets the k-th bit of x.
+   - Example: `x & (x ^ (1 << k))` toggles the k-th bit of x.
+   - Example: `x & (x & ~(1 << k))` checks if the k-th bit of x is clear.
+   - Example: `x & (x | (1 << k))` sets the k-th bit of x.
+   - Example: `x & (x ^ (1 << k))` toggles the k-th bit of x.
+   - Example: `x & (x & ~(1 << k))` checks if the k-th bit of x is clear.
+   - Example: `x & (x | (1 << k))` sets the k-th bit of x.
+    - Example: `x & (x ^ (1 << k))` toggles the k-th bit of x.
+    - Example: `x & (x & ~(1 << k))` checks if the k-th bit of x is clear.
+    - Example: `x & (x | (1 << k))` sets the k-th bit of x.
+    - Example: `x & (x ^ (1 << k))` toggles the k-th bit of x.
+    - Example: `x & (x & ~(1 << k))` checks if the k-th bit of x is clear.
+    - Example: `x & (x | (1 << k))` sets the k-th bit of x.
+    - Example: `x & (x ^ (1 << k))` toggles the k-th bit of x.
+    - Example: `x & (x & ~(1 << k))` checks if the k-th bit of x is clear.
+    - Example: `x & (x | (1 << k))` sets the k-th bit of x.
+    - Example: `x & (x ^ (1 << k))` toggles the k-th bit of x.
+    - Example: `x & (x & ~(1 << k))` checks if the k-th bit of x is clear.
+    - Example: `x & (x | (1 << k))` sets the k-th bit of x.
+    - Example: `x & (x ^ (1 << k))` toggles the k-th bit of x.
+    - Example: `x & (x & ~(1 << k))` checks if the k-th bit of x is clear.
+    - Example: `x & (x | (1 << k))` sets the k-th bit of x.
+    - Example: `x & (x ^ (1 << k))` toggles the k-th bit of x.
+    - Example: `x & (x & ~(1 << k))` checks if the k-th bit of x is clear.
+    - Example: `x & (x | (1 << k))` sets the k-th bit of x.
+
+2. **Bitwise OR (`|`)**: Used to set bits.
+3. **Bitwise XOR (`^`)**: Used to toggle bits.
+4. **Bitwise NOT (`~`)**: Used to invert bits.
+5. **Left Shift (`<<`)**: Shifts bits to the left, effectively multiplying by 2.
+   - Example: `x << k` shifts x left by k bits.
+   - Example: `x << 1` doubles the value of x.
+   - Example: `x << 2` quadruples the value of x.
+   - Example: `x << 3` octuples the value of x.
+   - Example: `x << 4` increases the value of x by a factor of 16.
+   - Example: `x << 5` increases the value of x by a factor of 32.
+   - Example: `x << 6` increases the value of x by a factor of 64.
+   - Example: `x << 7` increases the value of x by a factor of 128.
+   - Example: `x << 8` increases the value of x by a factor of 256.
+   - Example: `x << 9` increases the value of x by a factor of 512.
+   - Example: `x << 10` increases the value of x by a factor of 1024.
+   - Example: `x << 11` increases the value of x by a factor of 2048.
+   - Example: `x << 12` increases the value of x by a factor of 4096.
+   - Example: `x << 13` increases the value of x by a factor of 8192.
+   - Example: `x << 14` increases the value of x by a factor of 16384.
+   - Example: `x << 15` increases the value of x by a factor of 32768.
+   - Example: `x << 16` increases the value of x by a factor of 65536.
+   - Example: `x << 17` increases the value of x by a factor of 131072.
+   - Example: `x << 18` increases the value of x by a factor of 262144.
+   - Example: `x << 19` increases the value of x by a factor of 524288.
+   - Example: `x << 20` increases the value of x by a factor of 1048576.
+   - Example: `x << 21` increases the value of x by a factor of 2097152.
+   - Example: `x << 22` increases the value of x by a factor of 4194304.
+   - Example: `x << 23` increases the value of x by a factor of 8388608.
+   - Example: `x << 24` increases the value of x by a factor of 16777216.
+   - Example: `x << 25` increases the value of x by a factor of 33554432.
+    - Example: `x << 26` increases the value of x by a factor of 67108864.
+    - Example: `x << 27` increases the value of x by a factor of 134217728.
+    - Example: `x << 28` increases the value of x by a factor of 268435456.
+    - Example: `x << 29` increases the value of x by a factor of 536870912.
+    - Example: `x << 30` increases the value of x by a factor of 1073741824.
+    - Example: `x << 31` increases the value of x by a factor of 2147483648.
+    - Example: `x << 32` increases the value of x by a factor of 4294967296.
+    - Example: `x << 33` increases the value of x by a factor of 8589934592.
+    - Example: `x << 34` increases the value of x by a factor of 17179869184.
+    - Example: `x << 35` increases the value of x by a factor of 34359738368.
+    - Example: `x << 36` increases the value of x by a factor of 68719476736.
+    - Example: `x << 37` increases the value of x by a factor of 137438953472.
+    - Example: `x << 38` increases the value of x by a factor of 274877906944.
+    - Example: `x << 39` increases the value of x by a factor of 549755813888.
+    - Example: `x << 40` increases the value of x by a factor of 1099511627776.
+    - Example: `x << 41` increases the value of x by a factor of 2199023255552.
+    - Example: `x << 42` increases the value of x by a factor of 4398046511104.
+    - Example: `x << 43` increases the value of x by a factor of 8796093022208.
+    - Example: `x << 44` increases the value of x by a factor of 17592186044416.
+    - Example: `x << 45` increases the value of x by a factor of 35184372088832.
+    - Example: `x << 46` increases the value of x by a factor of 70368744177664.
+
+    - Example: `x << 47` increases the value of x by a factor of 140737488355328.
+    - Example: `x << 48` increases the value of x by a factor of 281474976710656.
+    - Example: `x << 49` increases the value of x by a factor of 562949953421312.
+    - Example: `x << 50` increases the value of x by a factor of 1125899906842624.
+    - Example: `x << 51` increases the value of x by a factor of 2251799813685248.
+    - Example: `x << 52` increases the value of x by a factor of 4503599627370496.
+    - Example: `x << 53` increases the value of x by a factor of 9007199254740992.
+    - Example: `x << 54` increases the value of x by a factor of 18014398509481984.
+    - Example: `x << 55` increases the value of x by a factor of 36028797018963968.
+    - Example: `x << 56` increases the value of x by a factor of 72057594037927936.
+    - Example: `x << 57` increases the value of x by a factor of 144115188075855872.
+    - Example: `x << 58` increases the value of x by a factor of 288230376151711744.
+    - Example: `x << 59` increases the value of x by a factor of 576460752303423488.
+    - Example: `x << 60` increases the value of x by a factor of 1152921504606846976.
+    - Example: `x << 61` increases the value of x by a factor of 2305843009213693952.
+    - Example: `x << 62` increases the value of x by a factor of 4611686018427387904.
+    - Example: `x << 63` increases the value of x by a factor of 9223372036854775808.
+    - Example: `x << 64` increases the value of x by a factor of 18446744073709551616.
+    - Example: `x << 65` increases the value of x by a factor of 36893488147419103232.
+    - Example: `x << 66` increases the value of x by a factor of 73786976294838206464.
+    - Example: `x << 67` increases the value of x by a factor of 147573952589676412928.
+    - Example: `x << 68` increases the value of x by a factor of 295147905179352825856.
+    
