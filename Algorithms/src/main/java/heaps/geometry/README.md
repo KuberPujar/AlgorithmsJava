@@ -1,0 +1,1 @@
+Geometry in Heap refers to utilising geometric concepts and algorithms to solve problems related to heap data structures, such as spatial positioning, distance calculations, or geometric relationships.

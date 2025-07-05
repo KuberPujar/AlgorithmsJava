@@ -1,0 +1,1 @@
+Divide and Conquer in Heap involves employing the divide and conquer algorithmic paradigm to solve heap-related problems, recursively dividing the problem into smaller subproblems and combining the results.

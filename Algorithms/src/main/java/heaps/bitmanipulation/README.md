@@ -1,0 +1,1 @@
+Bit Manipulation in Heap involves applying bitwise operations or techniques to optimise memory usage or perform specialized bit-level operations in heap-related algorithms or representations.
