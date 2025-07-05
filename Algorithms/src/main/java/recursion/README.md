@@ -1,0 +1,1 @@
+Recursion is a programming technique where a function calls itself repeatedly to solve a problem by breaking it down into smaller, similar subproblems, until a base case is reached.
