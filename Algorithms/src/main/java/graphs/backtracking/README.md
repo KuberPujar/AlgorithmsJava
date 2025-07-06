@@ -1,0 +1,1 @@
+Backtracking in Graphs involves exploring different paths or possibilities in a graph, incrementally building and evaluating valid solutions while discarding incorrect ones.

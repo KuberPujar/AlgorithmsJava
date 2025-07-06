@@ -1,0 +1,1 @@
+Union Find (Disjoint Set Union) is a data structure used to efficiently track and merge disjoint sets, often used in algorithms like Kruskal's algorithm for finding minimum spanning trees or detecting cycles.\
